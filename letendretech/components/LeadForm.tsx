@@ -108,7 +108,7 @@ export default function LeadForm({ compact = false, defaultService, onSuccess }:
   return (
     <form
       className={`lead-form${compact ? " lead-form--compact" : ""}`}
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit}>
       {/* Honeypot — hidden from humans, bots fill it */}
       <div style={{ display: "none" }} aria-hidden="true">
         <label>
