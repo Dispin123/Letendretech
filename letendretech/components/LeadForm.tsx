@@ -5,7 +5,7 @@ import { useState } from "react";
 interface LeadFormProps {
   compact?: boolean;
   defaultService?: string;
-  onSuccess?: () => void;h
+  onSuccess?: () => void;
 }
 
 const SERVICE_OPTIONS = [
