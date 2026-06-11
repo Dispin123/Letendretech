@@ -13,7 +13,7 @@ export default function SiteHeader() {
           <Link href="/services/managed-it">IT Services</Link>
           <Link href="/services/workflow-modernization">Modernization</Link>
           <Link href="/services/web-design">Websites</Link>
-          <Link href="/work/jmckinnon">Our Work</Link>
+          <Link href="/work/landscaping-operations">Solution Demo</Link>
           <Link href="/contact" className="btn btn-primary">
             Get a Quote
           </Link>

@@ -4,50 +4,56 @@ import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 
-type CaseStudy = {
+type SolutionDemo = {
   title: string;
-  client: string;
+  label: string;
   category: string;
   summary: string;
   challenge: string;
   solution: string;
-  results: string[];
+  capabilities: string[];
+  approaches: string[];
   stack: string[];
   emoji: string;
 };
 
-const CASE_STUDIES: Record<string, CaseStudy> = {
-  jmckinnon: {
-    emoji: "🏡",
-    client: "J. McKinnon Property Management",
-    category: "Web Design + Lead Management System",
-    title: "Full-Stack Website with Admin Dashboard",
+const SOLUTION_DEMOS: Record<string, SolutionDemo> = {
+  "landscaping-operations": {
+    emoji: "🌿",
+    label: "Letendre Tech Industry Demo",
+    category: "Landscaping Website + Operations Workflow",
+    title: "From Website Inquiry to Scheduled Landscaping Job",
     summary:
-      "A custom Next.js website with a lead capture system, Neon PostgreSQL database, SendGrid email notifications, and a full admin dashboard — all deployed on Netlify.",
+      "A reusable solution concept for landscaping and property-service companies that need a professional website and a clearer way to manage leads, estimates, jobs, and follow-up.",
     challenge:
-      "The client had no web presence and was tracking leads via email and sticky notes. They needed a professional website that could capture and manage leads from multiple property inquiry sources.",
+      "Many landscaping companies receive inquiries through calls, texts, social media, and website forms. Details get scattered, estimates are difficult to track, and owners lack a clear view of which opportunities need attention.",
     solution:
-      "We built a full-stack Next.js 15 site using the App Router with a Neon PostgreSQL serverless database. The site includes a lead form with honeypot spam protection and a Netlify Forms fallback. Every new submission triggers a branded email notification via SendGrid. A JWT-authenticated admin dashboard lets the client view, update, and manage all incoming leads, project jobs, and site images.",
-    results: [
-      "Professional web presence live within 2 weeks of kickoff",
-      "Lead form submissions captured directly to database — no more lost emails",
-      "Admin dashboard with real-time lead management",
-      "Instant email notification for every new inquiry",
-      "Site scores 90+ on Google PageSpeed Insights",
-      "Zero downtime since launch on Netlify",
+      "The concept pairs a focused lead-generation website with an operations workflow. A company can use a lightweight custom dashboard for a simple, controlled experience or use HubSpot as the backend when it needs a mature CRM, pipelines, automation, reporting, and integrations.",
+    capabilities: [
+      "Service-specific inquiry forms with property and project details",
+      "Lead qualification and estimate-request tracking",
+      "Estimate, approval, scheduling, and job-status stages",
+      "Photo, note, and customer-communication history",
+      "Automated confirmations and follow-up reminders",
+      "Mobile-friendly access for office and field teams",
+    ],
+    approaches: [
+      "Custom admin dashboard: focused interface, tailored workflow, and direct database ownership",
+      "HubSpot backend: CRM records, deal pipelines, tasks, automation, email history, and reporting",
+      "Hybrid approach: custom customer experience with HubSpot as the operational system of record",
     ],
     stack: [
-      "Next.js 15 (App Router, TypeScript)",
-      "Neon PostgreSQL (serverless)",
-      "Netlify + @netlify/plugin-nextjs",
-      "SendGrid (transactional email)",
-      "JWT auth via jose + bcryptjs",
+      "Next.js responsive marketing site and portal",
+      "HubSpot CRM or a focused PostgreSQL-backed admin dashboard",
+      "Netlify hosting and serverless functions",
+      "Email and workflow automation",
+      "Optional QuickBooks-ready integration planning",
     ],
   },
 };
 
 export async function generateStaticParams() {
-  return Object.keys(CASE_STUDIES).map((slug) => ({ slug }));
+  return Object.keys(SOLUTION_DEMOS).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -56,11 +62,11 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const cs = CASE_STUDIES[slug];
-  if (!cs) return {};
+  const demo = SOLUTION_DEMOS[slug];
+  if (!demo) return {};
   return {
-    title: `${cs.client} — Case Study`,
-    description: cs.summary,
+    title: `${demo.title} — Solution Demo`,
+    description: demo.summary,
   };
 }
 
@@ -70,8 +76,8 @@ export default async function WorkPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const cs = CASE_STUDIES[slug];
-  if (!cs) notFound();
+  const demo = SOLUTION_DEMOS[slug];
+  if (!demo) notFound();
 
   return (
     <>
@@ -79,9 +85,9 @@ export default async function WorkPage({
 
       <section className="service-hero">
         <div className="container">
-          <p className="section-label">Case Study</p>
-          <div style={{ fontSize: "48px", marginBottom: "16px" }}>{cs.emoji}</div>
-          <h1>{cs.title}</h1>
+          <p className="section-label">Industry Solution Demo — Not Client Work</p>
+          <div style={{ fontSize: "48px", marginBottom: "16px" }}>{demo.emoji}</div>
+          <h1>{demo.title}</h1>
           <p
             style={{
               color: "var(--electric)",
@@ -92,7 +98,7 @@ export default async function WorkPage({
               marginTop: "12px",
             }}
           >
-            {cs.client} — {cs.category}
+            {demo.label} — {demo.category}
           </p>
         </div>
       </section>
@@ -109,48 +115,22 @@ export default async function WorkPage({
             }}
           >
             <p style={{ fontSize: "17px", lineHeight: "1.7", color: "var(--text-muted)" }}>
-              {cs.summary}
+              {demo.summary}
             </p>
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
-            <div>
-              <h2 style={{ fontSize: "22px", marginBottom: "16px", color: "var(--navy)" }}>
-                The Challenge
-              </h2>
-              <p style={{ fontSize: "16px", lineHeight: "1.75", color: "var(--text-muted)" }}>
-                {cs.challenge}
-              </p>
-            </div>
+            <TextSection title="The Operational Problem" body={demo.challenge} />
+            <TextSection title="The Solution Concept" body={demo.solution} />
+            <ListSection title="Example Capabilities" items={demo.capabilities} />
+            <ListSection title="Backend Options" items={demo.approaches} />
 
             <div>
               <h2 style={{ fontSize: "22px", marginBottom: "16px", color: "var(--navy)" }}>
-                The Solution
-              </h2>
-              <p style={{ fontSize: "16px", lineHeight: "1.75", color: "var(--text-muted)" }}>
-                {cs.solution}
-              </p>
-            </div>
-
-            <div>
-              <h2 style={{ fontSize: "22px", marginBottom: "20px", color: "var(--navy)" }}>
-                Results
-              </h2>
-              <ul className="features-list">
-                {cs.results.map((r) => (
-                  <li key={r} style={{ fontSize: "16px" }}>
-                    {r}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h2 style={{ fontSize: "22px", marginBottom: "16px", color: "var(--navy)" }}>
-                Tech Stack
+                Possible Stack
               </h2>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-                {cs.stack.map((tech) => (
+                {demo.stack.map((tech) => (
                   <span
                     key={tech}
                     style={{
@@ -180,13 +160,14 @@ export default async function WorkPage({
             }}
           >
             <h3 style={{ color: "var(--white)", fontSize: "22px", marginBottom: "12px" }}>
-              Want something like this?
+              Want to shape this around your business?
             </h3>
             <p style={{ color: "var(--slate)", marginBottom: "28px" }}>
-              We can build a similar system for your business — usually in 2–3 weeks.
+              Start with paid workflow discovery, then choose the smallest system that solves
+              the real operational problem.
             </p>
             <Link href="/contact" className="btn btn-primary">
-              Get a Free Estimate →
+              Discuss Your Workflow →
             </Link>
           </div>
         </div>
@@ -194,5 +175,29 @@ export default async function WorkPage({
 
       <SiteFooter />
     </>
+  );
+}
+
+function TextSection({ title, body }: { title: string; body: string }) {
+  return (
+    <div>
+      <h2 style={{ fontSize: "22px", marginBottom: "16px", color: "var(--navy)" }}>{title}</h2>
+      <p style={{ fontSize: "16px", lineHeight: "1.75", color: "var(--text-muted)" }}>{body}</p>
+    </div>
+  );
+}
+
+function ListSection({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div>
+      <h2 style={{ fontSize: "22px", marginBottom: "20px", color: "var(--navy)" }}>{title}</h2>
+      <ul className="features-list">
+        {items.map((item) => (
+          <li key={item} style={{ fontSize: "16px" }}>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

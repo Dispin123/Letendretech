@@ -23,7 +23,7 @@ letendretech/
 │   ├── globals.css                 # Full design system
 │   ├── contact/page.tsx            # Contact + estimate form
 │   ├── services/[slug]/page.tsx    # Dynamic service pages
-│   ├── work/[slug]/page.tsx        # Case study pages
+│   ├── work/[slug]/page.tsx        # Industry solution demo pages
 │   └── admin/
 │       ├── page.tsx                # Login
 │       ├── leads/                  # Lead management
@@ -110,7 +110,7 @@ Add case studies in `app/work/[slug]/page.tsx` by adding entries to the `CASE_ST
 - **Projects** — Track client projects with status, value, and dates
 - **Images** — Paste URLs to manage site images by section
 
-## Key Design Decisions (from J. McKinnon lessons)
+## Key Design Decisions
 
 - `email TEXT` nullable from day one — no NOT NULL migrations
 - `updated_at TIMESTAMPTZ DEFAULT NOW()` on settings table

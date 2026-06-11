@@ -33,7 +33,7 @@ export default function SiteFooter() {
           <div className="footer-col">
             <h4>Company</h4>
             <ul>
-              <li><Link href="/work/jmckinnon">Our Work</Link></li>
+              <li><Link href="/work/landscaping-operations">Landscaping Demo</Link></li>
               <li><Link href="/contact">Contact</Link></li>
               <li><Link href="/contact">Get a Quote</Link></li>
               <li><Link href="/admin">Admin</Link></li>

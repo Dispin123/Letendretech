@@ -147,24 +147,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── WORK / PORTFOLIO ───────────────────────── */}
+      {/* ── SOLUTION DEMO ──────────────────────────── */}
       <section className="section section--dark">
         <div className="container">
-          <p className="section-label">Recent Work</p>
+          <p className="section-label">Solution Concept</p>
           <h2 style={{ fontSize: "clamp(28px,3vw,40px)", color: "var(--white)", marginBottom: 0 }}>
-            Built for real local businesses
+            A better digital workflow for landscaping companies
           </h2>
           <div className="work-grid">
-            <Link href="/work/jmckinnon" className="work-card" style={{ textDecoration: "none" }}>
+            <Link href="/work/landscaping-operations" className="work-card" style={{ textDecoration: "none" }}>
               <div className="work-card-image">
-                <span>🏡</span>
+                <span>🌿</span>
               </div>
               <div className="work-card-body">
-                <p className="work-card-tag">Web Design + Lead Management</p>
-                <h3>J. McKinnon Property Management</h3>
+                <p className="work-card-tag">Industry Demo — Not Client Work</p>
+                <h3>Landscaping Website + Operations Hub</h3>
                 <p>
-                  Full Next.js website with admin dashboard, lead capture form, Neon PostgreSQL
-                  database, and SendGrid email notifications.
+                  A reusable concept for turning website inquiries into organized estimates,
+                  jobs, follow-ups, and customer communication.
                 </p>
               </div>
             </Link>
@@ -176,11 +176,11 @@ export default function HomePage() {
                 </span>
               </div>
               <div className="work-card-body">
-                <p className="work-card-tag">Your Business Here</p>
-                <h3>Let&apos;s build something together</h3>
+                <p className="work-card-tag">Flexible Backend</p>
+                <h3>Custom dashboard or HubSpot</h3>
                 <p>
-                  Ready to launch your new website or get your IT under control?
-                  Reach out to discuss a focused first project.
+                  Use a focused custom admin portal or connect the website to HubSpot for CRM,
+                  pipeline management, automation, and reporting.
                 </p>
               </div>
             </div>
