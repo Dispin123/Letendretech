@@ -117,6 +117,6 @@ Add case studies in `app/work/[slug]/page.tsx` by adding entries to the `CASE_ST
 - `town` and `business_type` columns in leads from the start
 - `ensureTables()` called on every API cold start
 - `LeadForm` shows visible errors — never silent `catch {}`
-- Netlify Forms `data-netlify="true"` as fallback on every form
+- Lead forms submit through the database-backed API route
 - Honeypot field on every form
 - Admin sidebar includes all admin pages from the start

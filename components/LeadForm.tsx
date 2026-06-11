@@ -107,14 +107,7 @@ export default function LeadForm({ compact = false, defaultService, onSuccess }:
     <form
       className={`lead-form${compact ? " lead-form--compact" : ""}`}
       onSubmit={handleSubmit}
-      // Netlify Forms fallback
-      data-netlify="true"
-      name="contact"
-      netlify-honeypot="_gotcha"
     >
-      {/* Hidden netlify form name */}
-      <input type="hidden" name="form-name" value="contact" />
-
       {/* Honeypot — hidden from humans, bots fill it */}
       <div style={{ display: "none" }} aria-hidden="true">
         <label>
